@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define TRUE  1
+#define FALSE 0
+#pragma warning(disable:4996)
+
+struct node {
+	char name[20];
+	struct node *next;
+};
+struct node *first = NULL; 
+struct node *now; 
+struct node *prev, *temp; 
+
+void insert()
+{
+	if (first == NULL)
+	{
+		first = now;
+	}
+	else
+	{
+		prev = first;
+		temp = first;
+		while (temp != NULL && strcmp(now->name, temp->name) > 0)
+		{
+			prev = temp;
+			temp = temp->next;
+		}
+		if (temp == NULL)
+		{
+			prev->next = now;
+		}
+		else if (temp == prev)
+		{
+			first = now;
+			now->next = temp;
+		}
+		else
+		{
+			prev->next = now;
+			now->next = temp;
+		}
+	}
+}
+
+void search(char *na)
+{
+	if (first == NULL)
+	{
+		printf("The name list is empty\n");
+	}
+	else
+	{
+		prev = first;
+		temp = first;
+		while (temp != NULL && strcmp(na, temp->name) != 0)
+		{
+			prev = temp;
+			temp = temp->next;
+		}
+		if (temp == NULL)
+		{
+			printf("%s is not in the list\n", na);
+		}
+		else if (strcmp(na, temp->name) == 0)
+		{
+			printf("Previous name = %s\n", prev->name);
+			printf("The name = %s\n", temp->name);
+			printf("Next name = %s\n", temp->next->name);
+		}
+	}
+}
+
+int main() {
+	int cont = TRUE;
+	char sname[20];
+
+	printf("If you want to stop, just enter 'exit'\n");
+	printf("input name>>");
+	while (cont)
+	{
+		now = (struct node *) malloc(sizeof(struct node));
+		now->next = NULL;
+		scanf("%s", now->name);
+		if (strcmp(now->name, "exit") != 0)
+		{
+			insert();
+			printf("input name>>");
+		}
+		else
+		{
+			cont = FALSE;
+		}
+	}
+	printf("if you want to stop, just enter 'exit'\n");
+	printf("search name>>");
+	cont = TRUE;
+	while (cont)
+	{
+		scanf("%s", sname);
+		if (strcmp(sname, "exit") != 0)
+		{
+			search(sname);
+			printf("search name>>");
+		}
+		else
+		{
+			cont = FALSE;
+		}
+	}
+	return 0;
+}
