@@ -1,0 +1,33 @@
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+int arr[100]; 
+
+int Fibo1(int num)
+{
+  int p;
+  for(p=0; p<=num; p++){
+    if(p==0){
+      arr[p]=0;
+    }
+    else if(p==1){
+      arr[p]=1;
+    }
+    else{
+      arr[p]=arr[p-1]+arr[p-2];
+    }
+  }
+  return arr[p];
+}
+
+int main( ) 
+{
+  int N;
+  printf("몇 번째 피보나치 수까지 구할 것인지를 입력해주세요.\n>>");
+  scanf("%d", &N);
+  Fibo1(N);
+  for(int k=0; k<=N; k++){
+    printf(" %d", arr[k]);
+  }
+  return 0;
+}
