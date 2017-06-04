@@ -1,0 +1,37 @@
+Source code
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+int main()
+{
+	int num, input, max, min;
+	float total=0;	
+	printf(“몇개의 정수를 입력하시겠습니까?”);
+	scanf(“%d”, &num);
+	for(int i=0; i < num; i++)
+	{
+		printf(“정수를 입력해 주십시오”);
+		scanf(“%d”, &input);
+		if(i==0)
+		{
+			max = input;
+			min = input;
+		}
+		else
+		{
+			if (max < input)
+			{
+				max=input;
+			}
+			if (min > input)
+			{
+				min=input;
+			}
+		}
+		total += input;
+	}
+	printf(“주어진 정수의 합은 %0.2f입니다.\n”, total);
+	printf(“주어진 정수의 평균값은 %0.2f입니다.\n”, total/num);
+	printf(“주어진 정수중 최댓값은 %d입니다.\n”, max);
+	printf(“주어진 정수중 최솟값은 %d입니다.\n”, min);
+}
