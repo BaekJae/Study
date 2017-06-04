@@ -1,0 +1,59 @@
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+FILE *input, *output;
+int i,p,k,j,temp1,temp2,num=0,min;
+int arr[100];
+int main() {
+	input = fopen("input.txt", "w+");//input.txt를 쓰기 용도로 염
+	output = fopen("output.txt", "w+");//output.txt를 쓰기 용도로 염
+	printf("넣을 수를 입력해 주십시오.(수의 끝은 0을 넣어주세요.)");
+	while (1) {
+		scanf("%d", &k);
+		if (k == 0)
+		{
+			break;
+		}
+		fprintf(input, "%d\n", k);
+		i++;
+	}//수를 읽는 중간에 0이 나오기 전까진 수를 읽어 파일에 그 수를 저장함(input.txt)
+	fclose(input);//input 종료
+	input = fopen("input.txt", "r+");//input.txt를 다시 읽기 용도로 염
+	while (fscanf(input, "%d", &temp1) != EOF)//input안의 내용들을 파일의 마지막이 나올 때까지 arr에 저장함.
+	{
+
+		arr[num] = temp1;
+		num++;
+	}
+	for (p = 0; p < i; p++) {
+		min = p;
+		for (j = p; j < i; j++)
+		{
+			if (arr[min] > arr[j])
+			{
+				min = j;
+			}
+		}
+		temp2=arr[min];
+		arr[min] = arr[p];
+		arr[p] = temp2;//선택정렬
+		fprintf(output, "%d번째 정렬", p + 1);//정렬 중간결과 표시
+		for (j = 0; j < i; j++) {
+			fprintf(output, "%d ", arr[j]);
+		}
+		fprintf(output, "\n");
+	}
+	fprintf(output, "최종 리스트 정렬 값:");//최종 정렬결과 표시
+	for (j = 0; j < i; j++)
+	{
+		fprintf(output, "%d ", arr[j]);
+	}
+	fprintf(output, "\n");
+
+	if (fclose(input) == EOF)//파일 종료
+		printf("can't");
+
+	if (fclose(output) == EOF)//파일 종료
+		printf("can't");
+	return 0;
+}
