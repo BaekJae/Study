@@ -1,0 +1,24 @@
+#include<stdio.h>
+#pragma warning(disable:4996)
+
+int Fibo2(int num){
+  if(num==0){
+    return 0;
+  }
+  if(num==1){
+    return 1;
+  }
+  else {
+    return Fibo2(num-1)+Fibo2(num-2);
+  }
+}
+
+int main( ) {
+  int N;
+  printf(“몇 번째 피보나치 수까지 구할 것인지를 입력해 주세요.\n>>”);
+  scanf("%d", &N);
+  for(int p=0; p<=N; p++){
+    printf(" %d",Fibo2(p));
+  }
+  return 0;
+}
