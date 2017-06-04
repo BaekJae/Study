@@ -1,0 +1,52 @@
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+int count2 = 0;
+int binarySearch(int list[], int size, int key) {
+	int index = 0,right = size - 1,left=0,midpt;
+	while (left<=right) {
+		midpt = (left + right) / 2;
+		if (list[midpt] > key) {
+			right = midpt-1;
+		}
+		else if (list[midpt] < key) {
+			left = midpt+1;
+		}
+		else if (key == list[midpt]) {
+			index = midpt;
+			return index;
+			break;
+		}
+		count2++;
+	}
+}
+
+int main() {
+	int arr[10] = { 45,89,13,52,6,71,20,74,56,49 };
+	int j, k, temp, count1=0;
+	printf("교환 전\n->");
+	for (j = 0; j < 10; j++)
+	{
+		printf("%d ", arr[j]);
+	}
+	for (j = 0; j < 10; j++)
+	{
+		for (k = j; k <10; k++) {
+			if (arr[j] > arr[k]) {
+				temp = arr[j];
+				arr[j] = arr[k];
+				arr[k] = temp;
+			}
+			count1++;
+		}
+	}
+	printf("\n교환 후\n->");
+	for (j = 0; j < 10; j++) 
+	{
+		printf("%d ", arr[j]);
+	}
+	printf("\n비교 횟수는 %d 입니다.\n", count1);
+	binarySearch(arr, 10, 45);
+	printf("%d는 %d번째에 있습니다.\n",arr[binarySearch(arr,10,45)], binarySearch(arr,10,45)+1);
+	printf("이진 탐색 비교 회수는 %d 입니다.\n", count2+1);
+}
