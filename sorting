@@ -1,0 +1,26 @@
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+int main() {
+	int num,temp;
+	int arr[100];
+	printf("Enter number of integers.\n>>");
+	scanf("%d", &num);
+	printf("Enter integers.\n>>");
+	for (int i = 0; i < num; i++) {
+		scanf("%d", &arr[i]);
+	}
+	for (int i = 0; i < num; i++) {
+		for(int j=0; j<num-i-1; j++){
+			if (arr[j] > arr[j + 1]) {
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+	printf("After sorting.\n>>");
+	for (int i = 0; i < num; i++) {
+		printf("%d ", arr[i]);
+	}
+}
