@@ -2,7 +2,7 @@
 #pragma warning(disable:4996)
 
 int main() {
-	int num, base, cnt=0;
+	int num, base, cnt = 0,i;
 	int arr[100];
 	while (1) {
 		cnt = 0;
@@ -11,27 +11,54 @@ int main() {
 		if (num == 0 && base == 0) {
 			break;
 		}
-		if (base < 16 && base != 8) {
+		if (base > 0 && base <= 16) {
 			for (int i = 0; i < 50; i++) {
 				if (num <= 0) {
 					break;
 				}
-				arr[i] = num % base;
-				num = num / base;
+				arr[i] = (int) num % base;
+				num = (int) num / base;
 				cnt++;
 			}
-			for (int i = 0; i < cnt; i++) {
-				printf("%d", arr[i]);
+			for (i = cnt-1; i>=0; i--) {
+				if (arr[i] < 10) {
+					printf("%d", arr[i]);
+				}
+				else if (arr[i]>=10 && arr[i]<= 16) {
+					if (arr[i] == 10) {
+						printf("a");
+						break;
+					}
+					if (arr[i] == 11) {
+						printf("b");
+						break;
+					}
+					if (arr[i] == 12) {
+						printf("c");
+						break;
+					}
+					if (arr[i] == 13) {
+
+
+						printf("d");
+						break;
+					}
+					if (arr[i] == 14) {
+						printf("e");
+						break;
+					}
+					if (arr[i] == 15) {
+						printf("f");
+						break;
+					}
+					if (arr[i] == 16) {
+						printf("g");
+						break;
+					}
+				}
 			}
-			printf("\n\n");
 		}
-		else if (base == 16) {
-			printf("%x", num);
-			printf("\n\n");
-		}
-		else if (base == 8) {
-			printf("%o", num);
-			printf("\n\n");
-		}
+		printf("\n\n");
 	}
+
 }
