@@ -1,0 +1,18 @@
+
+public class If {
+	public static void main(String[] args) throws Exception{
+		int ch;
+		System.out.print("문자를 입력하세요. : ");
+		ch=System.in.read();
+		if(ch>='A' && ch<='Z') {
+			System.out.println((char) ch+("는 대문자입니다."));
+		}
+		else if(ch>='a' && ch <='z') {
+			System.out.println((char) ch+("는 소문자입니다."));
+		
+		}
+		else {
+			System.out.println("알파벳이 아닙니다.");
+		}
+	}
+}
